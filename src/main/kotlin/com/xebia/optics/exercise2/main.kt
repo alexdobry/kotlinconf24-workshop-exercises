@@ -1,7 +1,6 @@
 package com.xebia.com.xebia.optics.lens
 
 import arrow.optics.optics
-import com.xebia.com.xebia.optics.exercise1.Person
 
 @optics
 data class Person(val name: String, val address: Address) {
@@ -28,22 +27,22 @@ data class City(val name: String, val country: String) {
  * using the Optics DSL
  */
 fun Person.changeName(newName: String): Person =
-    TODO("Set name to newName")
+    Person.name.set(this, newName)
 
 /**
  * Update `this` [Person.address], [Address.street], [Street.number] with a [newNumber],
  * using the Optics DSL
  */
 fun Person.fixStreetNumber(newNumber: Int): Person =
-    TODO("Set Person address street number to newNumber")
+    Person.address.street.number.set(this, newNumber)
 
 fun main() {
     val person0 =
         Person(
             "KotlinConf Attendee",
-            com.xebia.com.xebia.optics.exercise1.Address(
-                com.xebia.com.xebia.optics.exercise1.Street("Center Blvd.", 1),
-                com.xebia.com.xebia.optics.exercise1.City("København", "Denmark")
+            Address(
+                Street("Center Blvd.", 1),
+                City("København", "Denmark")
             )
         )
 

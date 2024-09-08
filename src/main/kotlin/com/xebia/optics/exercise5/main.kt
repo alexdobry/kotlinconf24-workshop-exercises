@@ -1,22 +1,32 @@
 package com.xebia.com.xebia.optics.exercise5
 
-import arrow.optics.Every
-import arrow.optics.dsl.every
 import io.github.nomisrev.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 
 fun allCountries(json: String): List<String> {
-    TODO()
+  val js = Json.decodeFromString<JsonElement>(json)
+  return JsonPath
+    .select("Countries")
+    .every
+    .select("Country")
+    .string
+    .getAll(js)
 }
 
 fun incrementMinTemperature(json: String): JsonElement {
-    TODO()
+  val js = Json.decodeFromString<JsonElement>(json)
+  return JsonPath
+    .select("Countries")
+    .every
+    .path("Data.mintemp")
+    .int
+    .modify(js) { it + 1 }
 }
 
 fun main() {
-    println(allCountries(JSON))
-    println(incrementMinTemperature(JSON))
+  println(allCountries(JSON))
+  println(incrementMinTemperature(JSON))
 }
 
 val JSON = """

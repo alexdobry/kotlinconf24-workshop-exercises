@@ -49,13 +49,15 @@ fun generateRoyaltiesEstimationForSong(song: Song): Map<Int, Double> {
 /**
  * Solve the exercise by using the [andThen] function provided by the Arrow Core Functions module
  */
-val generateRoyaltiesEstimationForSongUsingAndThen: (Song) -> Map<Int, Double> = TODO()
+val generateRoyaltiesEstimationForSongUsingAndThen: (Song) -> Map<Int, Double> =
+    ::getSongArtist andThen ::getFeePerPlay andThen ::estimateRoyalties
 
 /**
  * In this case, you should use the [compose] function. The implementation will be slightly
  * different than the one used in the function above
  */
-val generateRoyaltiesEstimationForSongUsingCompose: (Song) -> Map<Int, Double> = TODO()
+val generateRoyaltiesEstimationForSongUsingCompose: (Song) -> Map<Int, Double> =
+    ::estimateRoyalties compose ::getFeePerPlay compose ::getSongArtist
 
 fun main() {
     val artist = Artist(name = "Foo Fighters", feePerSongPlayed = 3.50)

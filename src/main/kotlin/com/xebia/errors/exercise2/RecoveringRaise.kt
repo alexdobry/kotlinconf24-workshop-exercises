@@ -6,6 +6,7 @@ import arrow.core.raise.Raise
 import arrow.core.raise.recover
 import arrow.core.recover
 import arrow.core.raise.either
+import arrow.core.raise.ensure
 
 data class MyError(val message: String)
 

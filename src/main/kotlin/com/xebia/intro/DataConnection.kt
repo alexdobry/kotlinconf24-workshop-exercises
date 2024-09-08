@@ -33,7 +33,9 @@ fun <T> DataConnection<T>.populateData(data: Map<Long, T>) {
 fun main() {
     val data = mapOf(Pair(1L, Data(1L, "a")), Pair(2L, Data(2L, "b")))
 
-    val dataConnectionWithPopulatedDataAlternative1 = TODO()
+    val dataConnectionWithPopulatedDataAlternative1 = InMemoryDataConnection().apply { populateData(data) }
 
-    val dataConnectionWithPopulatedDataAlternative2 = TODO()
+    val dataConnectionWithPopulatedDataAlternative2 = with(InMemoryDataConnection()) { populateData(data) }
+
+    val dataConnectionWithPopulatedDataAlternative3 = InMemoryDataConnection().also { it.populateData(data) }
 }
